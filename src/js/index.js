@@ -1,6 +1,5 @@
 import Post from './components/Post.js'
 import { changeHeader, scrollFunctionDesktop, scrollFunctionMobile } from './animations.js';
-const contentful = require('contentful');
 
 const postsRoot = document.getElementById('posts');
 const searchBar = document.getElementById('search-bar');

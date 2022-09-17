@@ -10,7 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "contentful": "^9.2.4",
     "webpack": "^5.74.0"
   },
   "devDependencies": {
