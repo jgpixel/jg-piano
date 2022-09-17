@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,27 +10,27 @@
     <meta property="og:image" content="./images/meta-image.png">
     <meta name="description" content="A compilation of piano videos from Justin Gorelik.">
 
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="./src/css/styles.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;700&display=swap" rel="stylesheet">
 
-    <link rel="shortcut icon" href="./images/jg-piano-favicon.png" />
+    <link rel="shortcut icon" href="./src/images/jg-piano-favicon.png" />
 
-    <script type="module" src="./js/main.js" defer></script>
+    <script type="module" src="./dist/main.js" defer></script>
 
     <script src="https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js" defer></script>
 
     <title>JG Piano</title>
 </head>
-<body>
 
+<body>
     <header id="header" class="header">
         <h1>
             <a href="https://jgpiano.netlify.app">
                 <span class="hide-h1">JG Piano</span>
-                <img src="./images/logo.png" alt="JG Piano" id="logo" class="logo">
+                <img src="./src/images/logo.png" alt="JG Piano" id="logo" class="logo">
             </a>
         </h1>
     </header>
@@ -38,22 +39,22 @@
         <div class="search-div">
             <input type="text" id="search-bar" class="search-bar" placeholder="Search" spellcheck="false">
         </div>
-        
+
         <div class="menu">
-            <button id="new-to-old" class="new-to-old">Newest to Oldest</button>
-            <button id="old-to-new" class="old-to-new">Oldest to Newest</button>
+            <button id="new-to-old" class="filter-btn new-to-old">Newest to Oldest</button>
+            <button id="old-to-new" class="filter-btn old-to-new">Oldest to Newest</button>
         </div>
 
-        <div id="posts" class="posts"></div>
+        <div id="posts-root" class="posts"></div>
 
         <div class="back-to-top">
             <button id="to-top-btn-desktop" class="desktop">Back to Top</button>
         </div>
-        
+
         <button id="to-top-btn-mobile" class="mobile">
-            <img src="./images/arrowup.png" alt="up arrow" class="up-arrow">
+            <img src="./src/images/arrowup.png" alt="up arrow" class="up-arrow">
         </button>
-        
+
         <div id="no-results" class="no-results-container">
             <p id="no-results-c" class="no-results">No results :(</p>
         </div>
@@ -64,4 +65,5 @@
     </footer>
 
 </body>
+
 </html>
