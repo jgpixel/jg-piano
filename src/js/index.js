@@ -43,7 +43,7 @@ Object.prototype.hasValue = function(value) {
 }
 
 function debounce(query, time = 300) {
-    if (query === previousQuery) return;
+    if (query.trim() === previousQuery.trim()) return;
     
     clearTimeout(debounceTimeout);
 
