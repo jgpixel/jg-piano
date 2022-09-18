@@ -20,7 +20,7 @@ async function getPosts() {
 }
 
 const postObjects = (await getPosts()).sort((a, b) => new Date(b.uploadDate) - new Date(a.uploadDate));
-const postElements = postObjects.map(post => new Post(post).getElement());
+const postElements = postObjects.map(post => new Post(post).render());
 const reversedPostElements = [...postElements].reverse();
 const postObjToElementMap = mapTwoArrays(postObjects, postElements);
 

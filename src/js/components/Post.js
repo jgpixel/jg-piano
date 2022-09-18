@@ -7,8 +7,8 @@ export default class Post {
     render() {
         const unixDate = this.dateToUnix(this.props.uploadDate);
 
-        this.postContainer = document.createElement('div');
-        this.postContainer.className = 'post-container';
+        const postContainer = document.createElement('div');
+        postContainer.className = 'post-container';
 
         const titleText = document.createElement('h2');
         titleText.textContent = this.props.title;
@@ -40,7 +40,7 @@ export default class Post {
         dateText.textContent = `Posted on ${this.formatDate(this.props.uploadDate)}`;
         
         iframeContainer.appendChild(iframe);
-        this.appendChildren([titleText, artistText, iframeContainer, dateText], this.postContainer);
+        this.appendChildren([titleText, artistText, iframeContainer, dateText], postContainer);
 
         const isNewPost = Math.round((new Date()).getTime() / 1000) - unixDate <= 1209600;
     
@@ -51,10 +51,8 @@ export default class Post {
 
             dateText.appendChild(newPostSpan);
         }
-    }
-
-    getElement() {
-        return this.postContainer;
+        
+        return postContainer;
     }
 
     dateToUnix(date) {
