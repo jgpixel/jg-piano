@@ -1,7 +1,8 @@
-import Post from './components/Post.js'
+import * as contentful from 'contentful';
+import Post from './components/Post.js';
 import { changeHeader, scrollFunctionDesktop, scrollFunctionMobile } from './animations.js';
 
-const postsRoot = document.getElementById('posts');
+const postsRoot = document.getElementById('posts-root');
 const searchBar = document.getElementById('search-bar');
 const noResultsMsg = document.getElementById('no-results');
 
@@ -19,7 +20,7 @@ async function getPosts() {
 }
 
 const postObjects = (await getPosts()).sort((a, b) => new Date(b.uploadDate) - new Date(a.uploadDate));
-const postElements = postObjects.map(post => new Post(post, postsRoot).getElement());
+const postElements = postObjects.map(post => new Post(post).getElement());
 const reversedPostElements = [...postElements].reverse();
 const postObjToElementMap = mapTwoArrays(postObjects, postElements);
 
@@ -33,14 +34,14 @@ function mapTwoArrays(keys, values) {
     return map;
 }
 
-searchBar.addEventListener('keyup', e => { debounce(e.target.value) });
-
-let previousQuery = '';
-let debounceTimeout;
+searchBar.addEventListener('keyup', e => { debounce(e.target.value.toLowerCase()); });
 
 Object.prototype.hasValue = function(value) {
     return Object.values(this).toString().toLowerCase().includes(value);
 }
+
+let previousQuery = '';
+let debounceTimeout;
 
 function debounce(query, time = 300) {
     if (query.trim() === previousQuery.trim()) return;
@@ -90,7 +91,7 @@ oldToNewBtn.addEventListener('click', () => {
 
 function renderPosts(setToIsNewToOld) {
     (setToIsNewToOld ? postElements : reversedPostElements).forEach(post => {
-        document.getElementById('posts-root').appendChild(post);
+        postsRoot.appendChild(post);
     });
 
     if (setToIsNewToOld) {

@@ -1,8 +1,6 @@
-import Component from './Component.js';
-
-export default class Post extends Component {
-    constructor(props, root) {
-        super(props, root)
+export default class Post {
+    constructor(props) {
+        this.props = props;
         this.render();
     }
 
@@ -22,7 +20,7 @@ export default class Post extends Component {
         iframeContainer.className = 'iframe-container';
 
         const iframe = document.createElement('iframe');
-        Component.setAttributes({
+        this.setAttributes({
             'width': '560',
             'height': '315',
             'src': this.props.link,
@@ -42,14 +40,14 @@ export default class Post extends Component {
         dateText.textContent = `Posted on ${this.formatDate(this.props.uploadDate)}`;
         
         iframeContainer.appendChild(iframe);
-        Component.appendChildren([titleText, artistText, iframeContainer, dateText], this.postContainer);
+        this.appendChildren([titleText, artistText, iframeContainer, dateText], this.postContainer);
 
         const isNewPost = Math.round((new Date()).getTime() / 1000) - unixDate <= 1209600;
     
         if (isNewPost) {
             const newPostSpan = document.createElement('span');
             newPostSpan.className = 'new-post';
-            newPostSpan.textContent = 'NEW'
+            newPostSpan.textContent = 'NEW';
 
             dateText.appendChild(newPostSpan);
         }
@@ -112,5 +110,17 @@ export default class Post extends Component {
             default:
                 return 'December';
         }
+    }
+
+    setAttributes(attributes, element) {
+        for (const key in attributes) {
+            element.setAttribute(key, attributes[key]);
+        }
+    }
+
+    appendChildren(elements, root) {
+        elements.forEach(element => {
+            root.appendChild(element);
+        });
     }
 }
